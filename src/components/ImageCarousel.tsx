@@ -180,8 +180,10 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       )}
 
       {/* Scroll Indicator */}
-      <div className="hidden md:flex absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center animate-bounce-slow">
-        <span className="text-white text-sm mb-2">Scroll Down</span>
+      <div className="md:flex absolute bottom-10 left-[50%] transform !-translate-x-1/2 flex-col items-center">
+        <span className="text-white text-sm mb-2 animate-bounce-slow">
+          Scroll Down
+        </span>
         <svg
           width="24"
           height="24"
