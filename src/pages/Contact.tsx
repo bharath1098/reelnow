@@ -52,11 +52,14 @@ const Contact = () => {
                     <Mail className="mr-4 text-photo-accent" />
                     <div>
                       <h3 className="font-medium mb-1">Email Us</h3>
-                      <p className="text-gray-600">
-                        info@Vrukshy film'sphotography.com
-                      </p>
+                      <a
+                        className="text-gray-600"
+                        href="mailto:info@reelnow.in"
+                      >
+                        info@reelnow.in
+                      </a>
                       <p className="text-gray-500 text-sm mt-1">
-                        We typically respond within 24 hours
+                        We typically respond within few hours
                       </p>
                     </div>
                   </div>
@@ -190,7 +193,7 @@ const Contact = () => {
       </section>
 
       {/* Book a Call CTA */}
-      <section className="py-20 px-6 bg-photo-dark text-white">
+      {/* <section className="py-20 px-6 bg-photo-dark text-white">
         <div className="container mx-auto text-center">
           <AnimatedSection animation="fade-up">
             <h2 className="font-serif text-3xl md:text-4xl mb-6">
@@ -210,7 +213,7 @@ const Contact = () => {
             </a>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
     </Layout>
   );
 };
