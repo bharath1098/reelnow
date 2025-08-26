@@ -1,4 +1,3 @@
-
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -40,13 +39,19 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     loop,
     dragFree: false,
   });
-  
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-  
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
@@ -59,11 +64,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
 
   useEffect(() => {
     if (!emblaApi) return;
-    
+
     onSelect();
     setScrollSnaps(emblaApi.scrollSnapList());
     emblaApi.on("select", onSelect);
-    
+
     return () => {
       emblaApi.off("select", onSelect);
     };
@@ -72,9 +77,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   useEffect(() => {
     if (autoplay && emblaApi) {
       const intervalId = setInterval(() => {
-        emblaApi.scrollNext();
+        // emblaApi.scrollNext();
       }, autoplaySpeed);
-      
+
       return () => clearInterval(intervalId);
     }
   }, [autoplay, autoplaySpeed, emblaApi]);
@@ -127,7 +132,10 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
               <img
                 src={image.src}
                 alt={image.alt}
-                className={cn("w-full h-full object-cover invisible", imageClassName)}
+                className={cn(
+                  "w-full h-full object-cover invisible",
+                  imageClassName
+                )}
               />
             </div>
           ))}
@@ -170,7 +178,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           ))}
         </div>
       )}
-      
+
       {/* Scroll Indicator */}
       <div className="hidden md:flex absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center animate-bounce-slow">
         <span className="text-white text-sm mb-2">Scroll Down</span>

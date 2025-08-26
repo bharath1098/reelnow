@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="font-serif text-2xl">Vrukshy film's</h3>
+            <h3 className="font-serif text-2xl">Reelnow.in</h3>
             <p className="text-gray-300 text-sm max-w-xs">
               Capturing life's most precious moments with artistic vision and
               technical excellence.
@@ -65,14 +65,12 @@ const Footer = () => {
           <div>
             <h4 className="font-medium text-lg mb-4">Get In Touch</h4>
             <div className="space-y-3">
-              <p className="flex items-center text-gray-300 text-sm">
-                <Mail size={16} className="mr-2" />
-                info@Vrukshy film'sphotography.com
-              </p>
-              <p className="flex items-center text-gray-300 text-sm">
-                <Phone size={16} className="mr-2" />
-                +1 (555) 123-4567
-              </p>
+              <a href="mailto:info@reelnow.in" className="text-gray-600">
+                <p className="flex items-center text-gray-300 text-sm">
+                  <Mail size={16} className="mr-2" />
+                  info@reelnow.in
+                </p>
+              </a>
               <div className="flex items-center space-x-4 mt-4">
                 <a
                   href="https://instagram.com/reelnow.in"
@@ -97,8 +95,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Vrukshy film's Photography. All rights
-            reserved.
+            © {new Date().getFullYear()} Reelnow.in All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
             <ul className="flex space-x-6">
