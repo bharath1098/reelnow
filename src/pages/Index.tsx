@@ -22,60 +22,65 @@ export interface Photo {
 const Index = () => {
   const heroImages = [
     {
-      src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
-      alt: "Beautiful mountain landscape at dawn",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fhome_slide.jpg?alt=media&token=9e527343-5d02-4285-baf0-ef502090b886",
+      alt: "a man standing",
       title: "Your story told instantly",
-      subtitle: "We make your events unforgettable and your stories go viral.",
+      subtitle: "We shoot edit deliver instantly",
     },
     {
-      src: "https://1drv.ms/i/c/2a8c0acff387c2aa/IQTUoKQEsZViR5bIhdbhvPI1AfvhmeOEpqFHnnv7bOvg8eg?width=1024",
-      alt: "Bride and groom during a vibrant Haldi ceremony in Karnataka",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2FMOVIE_PHOTOSHOOT.jpg?alt=media&token=2fe43a60-4a17-4b30-bef4-3ab1ec22da3b",
+      alt: "Two celebrity singers performing on stage",
       title: "Movie Events & Promotions",
-      subtitle: "Celebrating love with turmeric traditions in Karnataka",
+      subtitle: "",
     },
     {
-      src: "https://1drv.ms/i/c/2a8c0acff387c2aa/IQSY1gF8qLHMRq9Zs3lnfZShAY1WrRz66VpGjtRpN9bl7B4?width=1024",
-      alt: "Bride showcasing intricate Mehndi designs during the ceremony",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fcorporate.jpeg?alt=media&token=84a37736-e961-402d-9c0b-54ef9f6dc424",
+      alt: "Corporate outing",
       title: "Corporate Events & Industrial Coverage",
-      subtitle: "Celebrating love with vibrant hues and intricate designs",
+      subtitle: "",
     },
     {
-      src: "https://1drv.ms/i/c/2a8c0acff387c2aa/IQRoa30nzAVLR62hkbsdM_saAfa8GD4ZqP6ksazxgyAIl2g?width=1024",
-      alt: "Traditional South Indian wedding ceremony in Bangalore",
-      title: "Weddings & Birthdays",
-      subtitle: "Celebrating love in the heart of Karnataka",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fwedding_photoshoot.jpg?alt=media&token=1cea03ba-2d47-4d34-abd3-c93a7e6552a4",
+      alt: "Traditional South Indian bride",
+      title: "Weddings",
+      subtitle: "",
     },
     {
-      src: "https://1drv.ms/u/c/2a8c0acff387c2aa/IQTAu5jBTZD4Rq3fdhZkyp6rAUUxe2hOeLrcdSlNZ-6xmKE?width=1024",
-      alt: "Bride and groom during a wedding photoshoot in Mysore",
-      title: "Ads & Company Promotions",
-      subtitle: "A majestic wedding amidst Mysore's heritage",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fbirthday_photoshoot.jpg?alt=media&token=1289bbe6-aa38-453d-bcdd-b11eba059b65",
+      alt: "a cup cake with candle",
+      title: "Birthdays",
+      subtitle: "",
     },
-
     {
-      src: "https://1drv.ms/i/c/2a8c0acff387c2aa/IQTNBE67Si83TKBmbHkLRRvpATT8PrfIO6K4R4a4QChsMYg?width=1024",
-      alt: "Fashion photoshoot in the streets of Bangalore",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fproduct_photoshoot.jpg?alt=media&token=39693a3b-5688-4f1d-b87c-ef56954bee9a",
+      alt: "a bottle of gucci perfume",
+      title: "Product Photography",
+      subtitle: "",
+    },
+    {
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fpet_photoshoot.jpg?alt=media&token=947ce628-2177-40fa-829a-55ffca2e1d50",
+      alt: "A puppy",
+      title: "Pet Photography",
+      subtitle: "",
+    },
+    {
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fcultural_photoshoot.jpg?alt=media&token=2e80c046-6762-4cee-94e2-10ce9f614642",
+      alt: "A cultural photoshoot",
+      title: "Cultural Photography",
+      subtitle: "",
+    },
+    {
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fpersonalized_photoshoot.jpeg?alt=media&token=f9810ea6-3d37-485c-b0de-737f53c7ad9d",
+      alt: "A man holding a camera",
       title: "Personalized Fashion Shoots",
-      subtitle: "Modern style meets historic charm",
+      subtitle: "",
     },
     {
-      src: "https://1drv.ms/i/c/2a8c0acff387c2aa/IQSDNpB5n9JSTbf-60lY2Ep5AWJAkNhHSeiTidnDjQlFgfE?width=1024",
-      alt: "Lush green landscapes of Coorg",
-      title: "Political Meetings",
-      subtitle: "Exploring the serene beauty of Karnataka",
-    },
-    {
-      src: "https://1drv.ms/i/c/2a8c0acff387c2aa/IQRon3ro_WHiR5x4G9bqnRiDAVchiJ7cZ1VTIBMEpUinzkk?width=1024",
-      alt: "Sunset over the hills in Chikmagalur",
+      src: "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Ffood_photoshoot.jpg?alt=media&token=c7cbf89a-98a8-429e-8fda-c5b85b152b7b",
+      alt: "A tea cup",
       title: "Food Photography",
-      subtitle: "Capturing the magic of dusk in the Western Ghats",
+      subtitle: "",
     },
-    // {
-    //   src: "/assets/images/waterfalls.jpeg",
-    //   alt: "Waterfalls in the forests of Karnataka",
-    //   title: "Mystic Falls",
-    //   subtitle: "The enchanting waterfalls of Karnataka",
-    // },
   ];
 
   const featuredServices = [
@@ -271,7 +276,7 @@ const Index = () => {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 px-6 bg-white">
+      {/* <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-14">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
@@ -309,7 +314,7 @@ const Index = () => {
             </Button>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
 
       {/* Portfolio Preview */}
       <section className="py-20 px-6 bg-gray-50">
