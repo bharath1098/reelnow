@@ -146,14 +146,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         <>
           <button
             onClick={scrollPrev}
-            className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-colors z-10"
+            className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 hidden md:flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-colors z-10"
             aria-label="Previous slide"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-colors z-10"
+            className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 hidden md:flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-colors z-10"
             aria-label="Next slide"
           >
             <ChevronRight size={24} />
@@ -180,7 +180,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
       )}
 
       {/* Scroll Indicator */}
-      <div className="md:flex absolute bottom-10 left-[50%] transform !-translate-x-1/2 flex-col items-center">
+      <div className="flex absolute bottom-10 left-[50%] transform !-translate-x-1/2 flex-col items-center">
         <span className="text-white text-sm mb-2 animate-bounce-slow">
           Scroll Down
         </span>
