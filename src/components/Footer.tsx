@@ -17,8 +17,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-serif text-2xl">Reelnow.in</h3>
             <p className="text-gray-300 text-sm max-w-xs">
-              Capturing life's most precious moments with artistic vision and
-              technical excellence.
+              We Shoot Edit Deliver Instantly
             </p>
           </div>
 

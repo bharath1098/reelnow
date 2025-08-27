@@ -131,7 +131,7 @@ const Services = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      {/* <section className="pt-24 pb-12 px-6 bg-photo-dark text-white">
+      <section className="pt-24 pb-12 px-6 bg-photo-dark text-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up">
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
@@ -144,7 +144,7 @@ const Services = () => {
             </p>
           </AnimatedSection>
         </div>
-      </section> */}
+      </section>
 
       {/* Main Services Section */}
       {/* <section className="py-16 px-6 bg-white">

@@ -115,7 +115,7 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 px-6 bg-gray-50">
+      {/* <section className="py-16 px-6 bg-gray-50">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-12">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">
@@ -142,7 +142,7 @@ const Contact = () => {
             </div>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="py-16 px-6 bg-white">

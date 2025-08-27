@@ -66,7 +66,7 @@ const Navigation = () => {
                 location.pathname === link.path
                   ? isScrolled
                     ? "text-photo-accent"
-                    : "text-[#00ffcf]"
+                    : "text-[#b13f3f]"
                   : isScrolled
                   ? "text-photo-dark hover:text-photo-accent"
                   : "text-white hover:text-white/80"

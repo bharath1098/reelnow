@@ -229,7 +229,7 @@ const Index = () => {
       </section>
 
       {/* Featured Projects Section - NEW SECTION */}
-      <section className="py-20 px-6 bg-gray-50">
+      {/* <section className="py-20 px-6 bg-gray-50">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-14">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
@@ -273,7 +273,7 @@ const Index = () => {
             </Button>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Preview */}
       {/* <section className="py-20 px-6 bg-white">
@@ -333,12 +333,12 @@ const Index = () => {
           <AnimatedSection animation="fade-up" delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
-                "https://images.unsplash.com/photo-1458668383970-8ddd3927deed",
-                "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
-                "https://images.unsplash.com/photo-1426604966848-d7adac402bff",
-                "https://images.unsplash.com/photo-1615729947596-a598e5de0ab3",
-                "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
-                "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86",
+                "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2FCultural%20Photography%2FCulturalPhotography10.jpg?alt=media&token=b6253bda-1bc2-416c-87be-464efb15831f",
+                "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fproduct%20Photography%2FproductPhotography10.jpeg?alt=media&token=f5d9895d-47e3-457d-84a7-31af27c3706f",
+                "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2FCultural%20Photography%2FCulturalPhotography2.JPG?alt=media&token=c51ea5d3-bb44-4bee-8086-295822645d39",
+                "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fproduct%20Photography%2FproductPhotography2.JPG?alt=media&token=e5a902f5-e8c0-4bde-a862-596ef003f25c",
+                "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2Fpets%20Photography%2FpetPhotography1.JPG?alt=media&token=fc5a725c-96f1-44cc-9a77-a6932d38f75b",
+                "https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2FCultural%20Photography%2FCulturalPhotography5.jpeg?alt=media&token=0f2773e6-1765-4356-a1d1-d4f6f6c42845",
               ].map((src, index) => (
                 <div
                   key={index}
