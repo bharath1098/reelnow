@@ -73,7 +73,7 @@ const About = () => {
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2FIMG_4523%20(2).png?alt=media&token=4c0dcc67-9bcb-4717-93aa-d36ecd936e33"
                 alt="Professional Photographer"
-                className="w-full aspect-square rounded-lg shadow-lg h-96 object-cover"
+                className="w-full aspect-square rounded-lg shadow-lg h-52 lg:h-96 object-cover"
               />
             </AnimatedSection>
 
