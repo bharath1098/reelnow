@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+/* global.css */
+.tabs-scrollbar {
+  scrollbar-width: none; /* hide by default */
+}
+
+.tabs-scrollbar:hover {
+  scrollbar-width: thin; /* show on hover */
+  scrollbar-color: #9ca3af transparent;
+}
