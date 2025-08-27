@@ -20,7 +20,7 @@ const Contact = () => {
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up">
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
-              Contact Us
+              Book Now
             </h1>
             <div className="w-24 h-1 bg-photo-accent mb-8"></div>
             <p className="max-w-3xl text-gray-300 text-lg">
@@ -68,7 +68,9 @@ const Contact = () => {
                     <Phone className="mr-4 text-photo-accent" />
                     <div>
                       <h3 className="font-medium mb-1">Call Us</h3>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
+                      <a href="tel:+919010994207" className="text-gray-600">
+                        +91 90109 94207
+                      </a>
                       <p className="text-gray-500 text-sm mt-1">
                         Mon - Fri: 9am - 5pm EST
                       </p>

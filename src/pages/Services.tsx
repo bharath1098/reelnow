@@ -330,13 +330,12 @@ const Services = () => {
                 step: "4",
                 title: "Editing & Retouching",
                 description:
-                  "Your images undergo professional editing and retouching to achieve the perfect look and feel.",
+                  "Your reels undergo professional editing and retouching to achieve the perfect look and feel.",
               },
               {
                 step: "5",
                 title: "Delivery",
-                description:
-                  "Receive your final images through a beautiful online gallery with easy downloading and sharing options.",
+                description: "Receive your final reels within few minutes",
               },
             ].map((item, index) => (
               <AnimatedSection
@@ -362,7 +361,7 @@ const Services = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 px-6 bg-white">
+      {/* <section className="py-16 px-6 bg-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-16">
             <h2 className="font-serif text-3xl md:text-4xl mb-4">
@@ -373,33 +372,33 @@ const Services = () => {
 
           <div className="max-w-full mx-auto space-y-6">
             {[
-              {
-                question:
-                  "How far in advance should I book my photography session?",
-                answer:
-                  "We recommend booking at least 4-6 weeks in advance for portrait sessions and 6-12 months in advance for weddings to ensure availability, especially during peak seasons.",
-              },
-              {
-                question:
-                  "What happens if it rains on the day of an outdoor shoot?",
-                answer:
-                  "We monitor weather conditions closely and will contact you 24-48 hours before your session if there's concern. We can either reschedule or move to an indoor location, depending on your preference.",
-              },
-              {
-                question: "How long until I receive my photos?",
-                answer:
-                  "Portrait sessions are typically delivered within 2 weeks, while weddings and larger events may take 4-6 weeks. We always provide a few preview images within days of your shoot.",
-              },
-              {
-                question: "Do you provide photo printing services?",
-                answer:
-                  "Yes, we offer high-quality professional printing services through our lab partners. You can order prints directly through your online gallery, ensuring color accuracy and archival quality.",
-              },
-              {
-                question: "Do you travel for photography sessions?",
-                answer:
-                  "Absolutely! We're available for travel nationwide and internationally. Travel fees vary based on location and duration - contact us for a custom quote.",
-              },
+              // {
+              //   question:
+              //     "How far in advance should I book my photography session?",
+              //   answer:
+              //     "We recommend booking at least 4-6 weeks in advance for portrait sessions and 6-12 months in advance for weddings to ensure availability, especially during peak seasons.",
+              // },
+              // {
+              //   question:
+              //     "What happens if it rains on the day of an outdoor shoot?",
+              //   answer:
+              //     "We monitor weather conditions closely and will contact you 24-48 hours before your session if there's concern. We can either reschedule or move to an indoor location, depending on your preference.",
+              // },
+              // {
+              //   question: "How long until I receive my photos?",
+              //   answer:
+              //     "Portrait sessions are typically delivered within 2 weeks, while weddings and larger events may take 4-6 weeks. We always provide a few preview images within days of your shoot.",
+              // },
+              // {
+              //   question: "Do you provide photo printing services?",
+              //   answer:
+              //     "Yes, we offer high-quality professional printing services through our lab partners. You can order prints directly through your online gallery, ensuring color accuracy and archival quality.",
+              // },
+              // {
+              //   question: "Do you travel for photography sessions?",
+              //   answer:
+              //     "Absolutely! We're available for travel nationwide and internationally. Travel fees vary based on location and duration - contact us for a custom quote.",
+              // },
             ].map((faq, index) => (
               <AnimatedSection
                 key={index}
@@ -416,7 +415,7 @@ const Services = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-20 px-6 bg-photo-dark text-white">

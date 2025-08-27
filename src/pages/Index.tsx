@@ -178,17 +178,17 @@ const Index = () => {
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-14">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
-              Elegance in Every Frame
+              Elegance in Every Shot
             </h2>
             <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
             <p className="max-w-2xl mx-auto text-gray-600">
-              With over a decade of experience capturing life's most beautiful
-              moments, we blend technical excellence with artistic vision to
-              create photographs that will be cherished for generations.
+              With experience capturing life's most beautiful moments, we blend
+              technical excellence with artistic vision to create photographs
+              that will be cherished for generations.
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <AnimatedSection animation="fade-right" delay={100}>
               <img
                 src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843"
@@ -224,7 +224,7 @@ const Index = () => {
                 <Link to="/about">Learn More About Us</Link>
               </Button>
             </AnimatedSection>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -385,7 +385,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-6 bg-white">
+      {/* <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-14">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
@@ -410,7 +410,7 @@ const Index = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact CTA */}
       <section
