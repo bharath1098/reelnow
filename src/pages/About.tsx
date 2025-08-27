@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -15,22 +14,26 @@ const About = () => {
     {
       year: "2013",
       title: "National Recognition",
-      description: "First national publication feature and award for portrait photography.",
+      description:
+        "First national publication feature and award for portrait photography.",
     },
     {
       year: "2016",
       title: "Studio Expansion",
-      description: "Expanded to our current location with state-of-the-art equipment.",
+      description:
+        "Expanded to our current location with state-of-the-art equipment.",
     },
     {
       year: "2019",
       title: "International Award",
-      description: "Recognized internationally for our landscape photography series.",
+      description:
+        "Recognized internationally for our landscape photography series.",
     },
     {
       year: "2022",
       title: "Published Collection",
-      description: "Released our first published collection of fine art photography.",
+      description:
+        "Released our first published collection of fine art photography.",
     },
   ];
 
@@ -49,10 +52,14 @@ const About = () => {
       <section className="pt-24 pb-12 px-6 bg-photo-dark text-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">About Us</h1>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
+              About Us
+            </h1>
             <div className="w-24 h-1 bg-photo-accent mb-8"></div>
             <p className="max-w-3xl text-gray-300 text-lg">
-              We're a team of passionate photographers dedicated to capturing life's most beautiful moments and transforming them into lasting memories.
+              We're a team of passionate photographers dedicated to capturing
+              life's most beautiful moments and transforming them into lasting
+              memories.
             </p>
           </AnimatedSection>
         </div>
@@ -64,29 +71,31 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="fade-right">
               <img
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+                src="https://firebasestorage.googleapis.com/v0/b/pixel-play-9891f.appspot.com/o/reelnow%2FIMG_4523%20(2).png?alt=media&token=4c0dcc67-9bcb-4717-93aa-d36ecd936e33"
                 alt="Professional Photographer"
-                className="w-full h-auto rounded-lg shadow-lg"
+                className="w-full aspect-square rounded-lg shadow-lg h-96 object-cover"
               />
             </AnimatedSection>
 
             <AnimatedSection animation="fade-left" className="space-y-6">
-              <h2 className="font-serif text-3xl md:text-4xl">Our Story</h2>
+              <h2 className="font-serif text-3xl md:text-4xl">Our Mission</h2>
               <p className="text-gray-700">
-                Founded in 2010, Vrukshy film's Photography began with a simple mission: to capture 
-                authentic moments with an artistic eye. What started as a solo endeavor has grown into 
-                a team of talented photographers, each bringing their unique perspective and expertise.
+                At Reel Now, we believe every moment deserves to be captured and
+                told instantly, with creativity and impact. Founded with a
+                passion for visual storytelling, Reel Now specializes in
+                creating quick, engaging, and professional reels that bring
+                events, celebrations, and promotions to life.
               </p>
               <p className="text-gray-700">
-                Our approach combines technical excellence with creative vision, allowing us to create 
-                images that not only document moments but also tell stories. We believe that the best 
-                photographs happen when clients feel comfortable and authentic, which is why we prioritize 
-                building relationships and understanding the unique needs of each project.
+                From film promotions and corporate events to weddings and
+                political campaigns, we craft reels that not only capture
+                attention but also leave a lasting impression. With a commitment
+                to speed, creativity, and quality, Reel Now transforms raw
+                moments into powerful stories—delivered instantly, when it
+                matters the most.
               </p>
               <p className="text-gray-700">
-                Today, we're proud to have documented thousands of special moments, from intimate 
-                weddings to grand commercial projects, always maintaining our core values of 
-                authenticity, creativity, and excellence.
+                Our mission is simple: Your Stories, Told Instantly.
               </p>
             </AnimatedSection>
           </div>
@@ -94,67 +103,96 @@ const About = () => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-16 px-6 bg-gray-50">
+      {/* <section className="py-16 px-6 bg-gray-50">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-14">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">Our Photography Philosophy</h2>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
+              Our Photography Philosophy
+            </h2>
             <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <AnimatedSection animation="fade-up" delay={100} className="space-y-4">
+            <AnimatedSection
+              animation="fade-up"
+              delay={100}
+              className="space-y-4"
+            >
               <div className="mx-auto w-16 h-16 rounded-full bg-photo-accent text-white flex items-center justify-center text-2xl">
                 1
               </div>
               <h3 className="font-serif text-xl">Authenticity</h3>
               <p className="text-gray-600">
-                We believe in capturing authentic moments and genuine emotions rather than forced poses.
+                We believe in capturing authentic moments and genuine emotions
+                rather than forced poses.
               </p>
             </AnimatedSection>
 
-            <AnimatedSection animation="fade-up" delay={200} className="space-y-4">
+            <AnimatedSection
+              animation="fade-up"
+              delay={200}
+              className="space-y-4"
+            >
               <div className="mx-auto w-16 h-16 rounded-full bg-photo-accent text-white flex items-center justify-center text-2xl">
                 2
               </div>
               <h3 className="font-serif text-xl">Artistry</h3>
               <p className="text-gray-600">
-                Every photograph is an opportunity to create art through thoughtful composition and lighting.
+                Every photograph is an opportunity to create art through
+                thoughtful composition and lighting.
               </p>
             </AnimatedSection>
 
-            <AnimatedSection animation="fade-up" delay={300} className="space-y-4">
+            <AnimatedSection
+              animation="fade-up"
+              delay={300}
+              className="space-y-4"
+            >
               <div className="mx-auto w-16 h-16 rounded-full bg-photo-accent text-white flex items-center justify-center text-2xl">
                 3
               </div>
               <h3 className="font-serif text-xl">Excellence</h3>
               <p className="text-gray-600">
-                We're committed to technical excellence and continuous improvement in our craft.
+                We're committed to technical excellence and continuous
+                improvement in our craft.
               </p>
             </AnimatedSection>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Milestones Section */}
-      <section className="py-16 px-6 bg-white">
+      {/* <section className="py-16 px-6 bg-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="mb-14">
-            <h2 className="font-serif text-3xl md:text-4xl text-center">Our Journey</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-center">
+              Our Journey
+            </h2>
             <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
           </AnimatedSection>
 
           <div className="space-y-6 max-w-4xl mx-auto">
             {milestones.map((milestone, index) => (
-              <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+              <AnimatedSection
+                key={index}
+                animation="fade-up"
+                delay={index * 100}
+              >
                 <Card className="overflow-hidden hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start">
                       <div className="mr-6">
-                        <span className="text-xl font-bold text-photo-accent">{milestone.year}</span>
+                        <span className="text-xl font-bold text-photo-accent">
+                          {milestone.year}
+                        </span>
                       </div>
                       <div>
-                        <h3 className="font-medium text-lg">{milestone.title}</h3>
-                        <p className="text-gray-600 mt-1">{milestone.description}</p>
+                        <h3 className="font-medium text-lg">
+                          {milestone.title}
+                        </h3>
+                        <p className="text-gray-600 mt-1">
+                          {milestone.description}
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -163,13 +201,15 @@ const About = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team Section */}
-      <section className="py-16 px-6 bg-gray-50">
+      {/* <section className="py-16 px-6 bg-gray-50">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="text-center mb-14">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">Meet Our Team</h2>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl mb-4">
+              Meet Our Team
+            </h2>
             <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
             <p className="max-w-2xl mx-auto text-gray-600">
               Get to know the talented photographers behind our stunning images.
@@ -188,7 +228,8 @@ const About = () => {
                   <h3 className="font-serif text-xl mb-1">Alex Johnson</h3>
                   <p className="text-photo-accent mb-3">Lead Photographer</p>
                   <p className="text-gray-600">
-                    Alex specializes in portrait and wedding photography with 15 years of experience.
+                    Alex specializes in portrait and wedding photography with 15
+                    years of experience.
                   </p>
                 </div>
               </div>
@@ -205,7 +246,8 @@ const About = () => {
                   <h3 className="font-serif text-xl mb-1">Samantha Lee</h3>
                   <p className="text-photo-accent mb-3">Photography Director</p>
                   <p className="text-gray-600">
-                    Samantha has a unique eye for composition and specializes in creative direction.
+                    Samantha has a unique eye for composition and specializes in
+                    creative direction.
                   </p>
                 </div>
               </div>
@@ -222,23 +264,27 @@ const About = () => {
                   <h3 className="font-serif text-xl mb-1">Michael Chen</h3>
                   <p className="text-photo-accent mb-3">Landscape Specialist</p>
                   <p className="text-gray-600">
-                    Michael captures breathtaking landscapes and has been published in National Geographic.
+                    Michael captures breathtaking landscapes and has been
+                    published in National Geographic.
                   </p>
                 </div>
               </div>
             </AnimatedSection>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Equipment Section */}
-      <section className="py-16 px-6 bg-white">
+      {/* <section className="py-16 px-6 bg-white">
         <div className="container mx-auto">
           <AnimatedSection animation="fade-up" className="mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl text-center">Our Equipment</h2>
+            <h2 className="font-serif text-3xl md:text-4xl text-center">
+              Our Equipment
+            </h2>
             <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
             <p className="max-w-2xl mx-auto text-center text-gray-600">
-              We invest in professional-grade equipment to ensure the highest quality results.
+              We invest in professional-grade equipment to ensure the highest
+              quality results.
             </p>
           </AnimatedSection>
 
@@ -274,7 +320,7 @@ const About = () => {
             </Card>
           </AnimatedSection>
         </div>
-      </section>
+      </section> */}
     </Layout>
   );
 };
