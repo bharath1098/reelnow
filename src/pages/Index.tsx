@@ -7,7 +7,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import ProjectCard from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { projects } from "./Projects";
+// import { projects } from "./Projects";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 export interface Photo {
@@ -147,7 +147,7 @@ const Index = () => {
   ];
 
   // Get featured projects (first 3)
-  const featuredProjects = projects.slice(0, 3);
+  // const featuredProjects = projects.slice(0, 3);
 
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 

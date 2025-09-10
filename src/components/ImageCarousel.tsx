@@ -77,7 +77,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   useEffect(() => {
     if (autoplay && emblaApi) {
       const intervalId = setInterval(() => {
-        // emblaApi.scrollNext();
+        emblaApi.scrollNext();
       }, autoplaySpeed);
 
       return () => clearInterval(intervalId);

@@ -23,7 +23,7 @@ const Navigation = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Projects", path: "/projects" },
+    // { name: "Projects", path: "/projects" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "Services", path: "/services" },
     { name: "About", path: "/about" },
@@ -68,7 +68,7 @@ const Navigation = () => {
                     ? "text-photo-accent"
                     : "text-[#b13f3f]"
                   : isScrolled
-                  ? "text-photo-dark hover:text-photo-accent"
+                  ? "text-photo-dark hover:text-[#b13f3f]"
                   : "text-white hover:text-white/80"
               )}
             >
@@ -86,7 +86,7 @@ const Navigation = () => {
                 isScrolled ? "text-photo-dark" : "text-white"
               )}
             >
-              <Instagram size={18} />
+              <Instagram size={18} className="hover:text:[#b13f3f]" />
             </a>
             <a
               href="https://www.youtube.com/@reelnow_official"
@@ -97,7 +97,7 @@ const Navigation = () => {
                 isScrolled ? "text-photo-dark" : "text-white"
               )}
             >
-              <YoutubeIcon size={18} />
+              <YoutubeIcon size={18} className="hover:text:[#b13f3f]" />
             </a>
           </div>
         </div>
@@ -106,26 +106,26 @@ const Navigation = () => {
         <button
           className={cn(
             "lg:hidden flex flex-col justify-center items-center space-y-1.5 focus:outline-none fixed top-9 right-6 z-50", // ← Fixed position
-            isScrolled ? "text-photo-dark" : "text-blue-500"
+            isScrolled ? "text-photo-dark" : "text-[#b13f3f]"
           )}
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
         >
           <span
             className={cn(
-              "block h-0.5 w-6 transition-all duration-300 bg-blue-500",
+              "block h-0.5 w-6 transition-all duration-300 bg-[#b13f3f]",
               isMobileMenuOpen && "rotate-45 translate-y-2"
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-6 transition-all duration-300 bg-blue-500",
+              "block h-0.5 w-6 transition-all duration-300 bg-[#b13f3f]",
               isMobileMenuOpen && "opacity-0"
             )}
           />
           <span
             className={cn(
-              "block h-0.5 w-6 transition-all duration-300 bg-blue-500",
+              "block h-0.5 w-6 transition-all duration-300 bg-[#b13f3f]",
               isMobileMenuOpen && "-rotate-45 -translate-y-2"
             )}
           />
@@ -147,16 +147,16 @@ const Navigation = () => {
               key={link.path}
               to={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-lg font-medium text-photo-dark hover:text-photo-accent"
+              className="text-lg font-medium text-photo-dark hover:text-[#b13f3f]"
             >
               {link.name}
             </Link>
           ))}
           <div className="flex items-center space-x-6 mt-8">
-            <a href="#" className="text-photo-dark hover:text-photo-accent">
+            <a href="#" className="text-photo-dark hover:text-[#b13f3f]">
               <Instagram size={24} />
             </a>
-            <a href="#" className="text-photo-dark hover:text-photo-accent">
+            <a href="#" className="text-photo-dark hover:text-[#b13f3f]">
               <Facebook size={24} />
             </a>
           </div>
