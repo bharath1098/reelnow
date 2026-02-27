@@ -1,221 +1,187 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
-import ContactForm from "@/components/ContactForm";
-import {
-  Instagram,
-  Facebook,
-  Mail,
-  Phone,
-  Youtube,
-  YoutubeIcon,
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, MapPin, Send, Instagram, Youtube } from "lucide-react";
+import { toast } from "sonner";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    toast.success("Message sent! We'll get back to you soon.");
+    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-6 bg-photo-dark text-white">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
-              Book Now
-            </h1>
-            <div className="w-24 h-1 bg-photo-accent mb-8"></div>
-            <p className="max-w-3xl text-gray-300 text-lg">
-              Have a question or ready to book? We'd love to hear from you.
-              Reach out to us using the form below.
-            </p>
-          </AnimatedSection>
+      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/20 to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+        
+        <div className="max-w-4xl mx-auto text-center relative">
+          <span className="text-cyan-400 text-sm font-semibold uppercase tracking-wider">Contact Us</span>
+          <h1 className="text-4xl md:text-6xl font-display font-bold mt-4 mb-6 gradient-text-white">
+            Get In Touch
+          </h1>
+          <p className="text-white/60 text-lg md:text-xl leading-relaxed">
+            Have a question or ready to book? We'd love to hear from you.
+          </p>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 px-6 bg-white">
-        <div className="container mx-auto">
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <AnimatedSection animation="fade-right">
-              <div className="space-y-8">
-                <div>
-                  <h2 className="font-serif text-3xl md:text-4xl mb-6">
-                    Get In Touch
-                  </h2>
-                  <p className="text-gray-600 mb-8 max-w-md">
-                    We're here to answer any questions you may have about our
-                    photography services, pricing, or availability.
-                  </p>
-                </div>
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
+                  Let's Create Something <span className="gradient-text">Amazing</span>
+                </h2>
+                <p className="text-white/60 leading-relaxed">
+                  We're here to answer any questions you may have about our services. 
+                  Reach out and we'll respond as soon as we can.
+                </p>
+              </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <Mail className="mr-4 text-photo-accent" />
-                    <div>
-                      <h3 className="font-medium mb-1">Email Us</h3>
-                      <a
-                        className="text-gray-600"
-                        href="mailto:info@reelnow.in"
-                      >
-                        info@reelnow.in
-                      </a>
-                      <p className="text-gray-500 text-sm mt-1">
-                        We typically respond within few hours
-                      </p>
-                    </div>
+              <div className="space-y-6">
+                <a href="mailto:info@reelnow.in" className="glass-card p-4 flex items-center gap-4 hover:bg-white/10 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center text-cyan-400">
+                    <Mail className="w-5 h-5" />
                   </div>
-
-                  <div className="flex items-start">
-                    <Phone className="mr-4 text-photo-accent" />
-                    <div>
-                      <h3 className="font-medium mb-1">Call Us</h3>
-                      <a href="tel:+919010994207" className="text-gray-600">
-                        +91 90109 94207
-                      </a>
-                      <p className="text-gray-500 text-sm mt-1">
-                        Mon - Fri: 9am - 5pm EST
-                      </p>
-                    </div>
+                  <div>
+                    <p className="text-white/50 text-sm">Email</p>
+                    <p className="text-white font-medium">info@reelnow.in</p>
                   </div>
+                </a>
 
-                  <div className="pt-4">
-                    <h3 className="font-medium mb-3">Follow Us</h3>
-                    <div className="flex space-x-4">
-                      <a
-                        href="https://instagram.com/reelnow.in"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
-                      >
-                        <Instagram size={20} className="text-photo-accent" />
-                      </a>
-                      <a
-                        href="https://www.youtube.com/@reelnow_official"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
-                      >
-                        <YoutubeIcon size={20} className="text-photo-accent" />
-                      </a>
-                    </div>
+                <a href="tel:+919010994207" className="glass-card p-4 flex items-center gap-4 hover:bg-white/10 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center text-cyan-400">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-white/50 text-sm">Phone</p>
+                    <p className="text-white font-medium">+91 90109 94207</p>
+                  </div>
+                </a>
+
+                <div className="glass-card p-4 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center text-cyan-400">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-white/50 text-sm">Location</p>
+                    <p className="text-white font-medium">Hyderabad, India</p>
                   </div>
                 </div>
               </div>
-            </AnimatedSection>
 
-            <AnimatedSection animation="fade-left" delay={100}>
-              <Card className="overflow-hidden border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <h3 className="font-serif text-2xl mb-6">Send a Message</h3>
-                  <ContactForm />
-                </CardContent>
-              </Card>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      {/* <section className="py-16 px-6 bg-gray-50">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Our Location
-            </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-gray-600">
-              Our studio is conveniently located in downtown. Feel free to visit
-              us during our business hours.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection animation="fade-up" delay={200}>
-            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
-              <div className="aspect-[16/9] w-full">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25903e421a6f1%3A0x27af1521d403d2d!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sca!4v1619544619201!5m2!1sen!2sca"
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                  title="Studio Location Map"
-                  allowFullScreen
-                ></iframe>
+              {/* Social Links */}
+              <div>
+                <p className="text-white/50 text-sm mb-4">Follow Us</p>
+                <div className="flex gap-4">
+                  <a
+                    href="https://instagram.com/reelnow.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-cyan-400 hover:border-cyan-500/50 transition-all"
+                  >
+                    <Instagram size={20} />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@reelnow_official"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-cyan-400 hover:border-cyan-500/50 transition-all"
+                  >
+                    <Youtube size={20} />
+                  </a>
+                </div>
               </div>
             </div>
-          </AnimatedSection>
-        </div>
-      </section> */}
 
-      {/* FAQ Section */}
-      <section className="py-16 px-6 bg-white">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Frequently Asked Questions
-            </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-          </AnimatedSection>
-
-          <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                question: "How do I book a photography session?",
-                answer:
-                  "Simply fill out our contact form, and we'll be in touch within 24 hours to discuss your needs and check availability.",
-              },
-              {
-                question: "What is your cancellation policy?",
-                answer:
-                  "We understand that plans change. Cancellations with 72+ hours notice receive a full refund of any deposit.",
-              },
-              {
-                question: "Do you offer rush delivery for photos?",
-                answer:
-                  "Yes, we offer rush delivery options for an additional fee. Please inquire for specifics based on your needs.",
-              },
-              {
-                question: "Can I purchase additional photos after my session?",
-                answer:
-                  "Absolutely! You can purchase additional digital images or prints from your gallery at any time.",
-              },
-            ].map((faq, index) => (
-              <AnimatedSection
-                key={index}
-                animation="fade-up"
-                delay={index * 100}
-              >
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-medium text-lg mb-2">{faq.question}</h3>
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
+            {/* Form */}
+            <div className="glass-card p-8 md:p-10">
+              <h3 className="text-xl font-display font-semibold text-white mb-6">Send a Message</h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-white/80 text-sm mb-2">Name *</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/80 text-sm mb-2">Email *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/80 text-sm mb-2">Phone</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all"
+                    placeholder="Your phone number"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/80 text-sm mb-2">Message *</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all resize-none"
+                    placeholder="Tell us about your project..."
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-bold rounded-xl text-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <Send className="w-5 h-5" />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Book a Call CTA */}
-      {/* <section className="py-20 px-6 bg-photo-dark text-white">
-        <div className="container mx-auto text-center">
-          <AnimatedSection animation="fade-up">
-            <h2 className="font-serif text-3xl md:text-4xl mb-6">
-              Prefer to Talk in Person?
-            </h2>
-            <p className="max-w-2xl mx-auto text-gray-300 mb-8">
-              Schedule a free 15-minute consultation call to discuss your
-              photography needs.
-            </p>
-            <a
-              href="https://calendly.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-photo-accent hover:bg-photo-accent/90 text-white py-3 px-8 rounded-md font-medium transition-colors inline-block"
-            >
-              Book a Free Consultation
-            </a>
-          </AnimatedSection>
-        </div>
-      </section> */}
     </Layout>
   );
 };

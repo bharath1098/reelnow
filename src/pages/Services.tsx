@@ -1,441 +1,230 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
-import ServiceCard from "@/components/ServiceCard";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckIcon } from "lucide-react";
+import { 
+  Camera, 
+  Video, 
+  Users, 
+  Building2, 
+  PartyPopper, 
+  Sparkles,
+  ArrowRight,
+  CheckCircle2
+} from "lucide-react";
 
 const Services = () => {
-  const mainServices = [
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll("[data-reveal]").forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const services = [
     {
-      title: "Portrait Photography",
-      description:
-        "Capture your authentic self with our professional portrait photography services.",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-      pricing: "From ₹4,999",
-      link: "/contact",
-      features: [
-        "Indoor & outdoor sessions",
-        "Multiple outfit changes",
-        "Professional retouching",
-        "Digital files included",
-        "Print packages available",
-      ],
+      icon: <Video className="w-8 h-8" />,
+      title: "Event Reels",
+      description: "Capture the energy of your events with dynamic, shareable reels.",
+      features: ["Live event coverage", "Same-day delivery", "Multi-camera angles"],
+      price: "From ₹4,999",
     },
     {
-      title: "Wedding Photography",
-      description:
-        "Document every precious moment of your special day with our wedding photography packages.",
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
-      pricing: "From ₹49,999",
-      link: "/contact",
-      features: [
-        "Full day coverage",
-        "Second photographer option",
-        "Engagement session included",
-        "Online gallery & high-res downloads",
-        "Custom wedding album design",
-      ],
+      icon: <Building2 className="w-8 h-8" />,
+      title: "Corporate Content",
+      description: "Professional reels for brands, product launches, and corporate events.",
+      features: ["Brand storytelling", "Product showcases", "Team highlights"],
+      price: "From ₹9,999",
     },
     {
-      title: "Commercial Photography",
-      description:
-        "Elevate your brand with professional commercial photography tailored to your business needs.",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-      pricing: "Custom Quotes",
-      link: "/contact",
-      features: [
-        "Product photography",
-        "Corporate headshots",
-        "Architecture & interior",
-        "Brand lifestyle imagery",
-        "Marketing campaign assets",
-      ],
+      icon: <PartyPopper className="w-8 h-8" />,
+      title: "Weddings & Celebrations",
+      description: "Turn your special moments into beautiful, emotional reels.",
+      features: ["Ceremony highlights", "Reception coverage", "Guest interviews"],
+      price: "From ₹14,999",
+    },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: "Influencer Content",
+      description: "Quick, high-quality reels for social media influencers.",
+      features: ["Trend-focused", "Platform optimized", "Fast turnaround"],
+      price: "From ₹2,999",
+    },
+    {
+      icon: <Camera className="w-8 h-8" />,
+      title: "Product Photography",
+      description: "Stunning product reels that showcase your offerings.",
+      features: ["360° views", "Lifestyle shots", "E-commerce ready"],
+      price: "From ₹3,999",
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: "Team & Culture",
+      description: "Show off your company culture with authentic team reels.",
+      features: ["Behind-the-scenes", "Employee spotlights", "Office tours"],
+      price: "From ₹7,999",
     },
   ];
 
-  const additionalServices = [
+  const process = [
     {
-      title: "Event Coverage",
-      description:
-        "Complete documentation of your special events, from corporate gatherings to milestone celebrations.",
-      image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
-      pricing: "From ₹14,999",
-      link: "/contact",
+      step: "01",
+      title: "Consultation",
+      description: "We discuss your vision, goals, and specific requirements.",
     },
     {
-      title: "Family Portraits",
-      description:
-        "Preserve precious family moments with beautiful, natural family portrait sessions.",
-      image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86",
-      pricing: "From ₹5,999",
-      link: "/contact",
+      step: "02",
+      title: "Planning",
+      description: "We plan every aspect of your shoot from location to styling.",
     },
     {
-      title: "Fine Art Prints",
-      description:
-        "Premium quality prints of our landscape and fine art photography for your home or office.",
-      image: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
-      pricing: "From ₹1,499",
-      link: "/contact",
-    },
-  ];
-
-  const pricingPackages = [
-    {
-      name: "Essential",
-      price: "₹4,999",
-      description: "Perfect for individuals needing professional portraits",
-      features: [
-        "1-hour session",
-        "1 location",
-        "2 outfit changes",
-        "10 digital images",
-        "Basic retouching",
-      ],
+      step: "03",
+      title: "The Shoot",
+      description: "Our team arrives and captures all the magic with precision.",
     },
     {
-      name: "Premium",
-      price: "₹8,999",
-      description: "Ideal for families and extended portrait sessions",
-      features: [
-        "2-hour session",
-        "2 locations",
-        "Multiple outfit changes",
-        "25 digital images",
-        "Advanced retouching",
-        "Online gallery",
-        "Print credit (₹2,000)",
-      ],
-      highlighted: true,
+      step: "04",
+      title: "Editing",
+      description: "Professional editing happens on-the-spot for instant delivery.",
     },
     {
-      name: "Ultimate",
-      price: "₹14,999",
-      description: "Comprehensive package for complete coverage",
-      features: [
-        "4-hour session",
-        "Multiple locations",
-        "Unlimited outfit changes",
-        "All digital images",
-        "Premium retouching",
-        "Online gallery",
-        "Print credit (₹5,000)",
-        "Fine art album",
-      ],
+      step: "05",
+      title: "Delivery",
+      description: "Receive your polished reel within 10 minutes of finishing.",
     },
   ];
 
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-6 bg-photo-dark text-white">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">
-              Our Services
-            </h1>
-            <div className="w-24 h-1 bg-photo-accent mb-8"></div>
-            <p className="max-w-3xl text-gray-300 text-lg">
-              Explore our comprehensive range of professional photography
-              services tailored to meet your unique needs.
-            </p>
-          </AnimatedSection>
+      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/20 to-transparent" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+        
+        <div className="max-w-4xl mx-auto text-center relative">
+          <span className="text-cyan-400 text-sm font-semibold uppercase tracking-wider">Our Services</span>
+          <h1 className="text-4xl md:text-6xl font-display font-bold mt-4 mb-6 gradient-text-white">
+            What We Offer
+          </h1>
+          <p className="text-white/60 text-lg md:text-xl leading-relaxed">
+            Professional reel creation for every occasion. Fast, beautiful, and ready to share.
+          </p>
         </div>
       </section>
 
-      {/* Main Services Section */}
-      {/* <section className="py-16 px-6 bg-white">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Main Services
-            </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-gray-600">
-              Our core photography services provide exceptional quality and
-              value for all your important moments.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {mainServices.map((service, index) => (
-              <AnimatedSection
+      {/* Services Grid */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <div
                 key={service.title}
-                animation="fade-up"
-                delay={index * 100}
+                id={`service-${index}`}
+                data-reveal
+                className={`glass-card p-8 transition-all duration-700 hover:bg-white/10 hover:border-cyan-500/30 group ${
+                  isVisible[`service-${index}`] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <ServiceCard {...service} />
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Additional Services Section */}
-      {/* <section className="py-16 px-6 bg-gray-50">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Additional Services
-            </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-gray-600">
-              Beyond our main offerings, we provide specialized photography
-              services to meet diverse needs.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {additionalServices.map((service, index) => (
-              <AnimatedSection
-                key={service.title}
-                animation="fade-up"
-                delay={index * 100}
-              >
-                <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="font-serif text-xl mb-2">{service.title}</h3>
-                    <p className="text-photo-accent font-medium mb-3">
-                      {service.pricing}
-                    </p>
-                    <p className="text-gray-600 mb-6 h-16">
-                      {service.description}
-                    </p>
-                    <Button
-                      asChild
-                      className="bg-photo-accent hover:bg-photo-accent/90 text-white w-full"
-                    >
-                      <Link to={service.link}>Learn More</Link>
-                    </Button>
-                  </div>
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center mb-6 text-cyan-400 group-hover:scale-110 transition-transform">
+                  {service.icon}
                 </div>
-              </AnimatedSection>
+                <h3 className="text-xl font-display font-semibold mb-3 text-white">{service.title}</h3>
+                <p className="text-white/60 mb-4">{service.description}</p>
+                
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-white/50 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="text-cyan-400 font-semibold">{service.price}</span>
+                  <Link
+                    to="/"
+                    className="text-white/60 hover:text-cyan-400 transition-colors text-sm flex items-center gap-1"
+                  >
+                    Book Now <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </section> */}
-
-      {/* Pricing Section */}
-      {/* <section className="py-16 px-6 bg-white">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Portrait Photography Packages
-            </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-            <p className="max-w-2xl mx-auto text-gray-600">
-              Choose the perfect package to suit your portrait photography needs
-              and budget.
-            </p>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricingPackages.map((pkg, index) => (
-              <AnimatedSection
-                key={pkg.name}
-                animation="fade-up"
-                delay={index * 100}
-              >
-                <Card
-                  className={`h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-                    pkg.highlighted ? "border-photo-accent shadow-md" : ""
-                  }`}
-                >
-                  {pkg.highlighted && (
-                    <div className="bg-photo-accent text-white text-center py-1 text-sm font-medium">
-                      Most Popular
-                    </div>
-                  )}
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <div className="mb-6 text-center">
-                      <h3 className="font-serif text-2xl">{pkg.name}</h3>
-                      <div className="mt-3 mb-2">
-                        <span className="text-3xl font-bold text-photo-accent">
-                          {pkg.price}
-                        </span>
-                      </div>
-                      <p className="text-gray-600 text-sm">{pkg.description}</p>
-                    </div>
-
-                    <ul className="space-y-3 mb-8 flex-grow">
-                      {pkg.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <CheckIcon className="h-5 w-5 text-photo-accent mr-2 mt-0.5" />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Button
-                      asChild
-                      className={`w-full mt-auto ${
-                        pkg.highlighted
-                          ? "bg-photo-accent hover:bg-photo-accent/90 text-white"
-                          : "bg-white border border-photo-accent text-photo-accent hover:bg-gray-50"
-                      }`}
-                    >
-                      <Link to="/contact">Book Now</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section> */}
+      </section>
 
       {/* Process Section */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
+      <section className="section-padding bg-gradient-to-b from-transparent via-cyan-950/10 to-transparent">
+        <div className="max-w-7xl mx-auto">
+          <div
+            id="process-header"
+            data-reveal
+            className={`text-center mb-16 transition-all duration-700 ${isVisible["process-header"] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
+            <span className="text-cyan-400 text-sm font-semibold uppercase tracking-wider">How We Work</span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mt-4 gradient-text-white">
               Our Process
             </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-            <p className="max-w-full mx-auto text-gray-600">
-              From initial consultation to final delivery, here's how we bring
-              your photography vision to life.
-            </p>
-          </AnimatedSection>
+          </div>
 
-          <div className="max-w-4xl mx-auto flex flex-col gap-5">
-            {[
-              {
-                step: "1",
-                title: "Consultation",
-                description:
-                  "We begin with an in-depth discussion to understand your vision, goals, and specific requirements.",
-              },
-              {
-                step: "2",
-                title: "Planning",
-                description:
-                  "We meticulously plan every aspect of your shoot, from location scouting to styling recommendations.",
-              },
-              {
-                step: "3",
-                title: "The Shoot",
-                description:
-                  "On the day of your shoot, our team provides direction while creating a comfortable environment.",
-              },
-              {
-                step: "4",
-                title: "Editing & Retouching",
-                description:
-                  "Your reels undergo professional editing and retouching to achieve the perfect look and feel.",
-              },
-              {
-                step: "5",
-                title: "Delivery",
-                description: "Receive your final reels within few minutes",
-              },
-            ].map((item, index) => (
-              <AnimatedSection
-                key={index}
-                animation="fade-up"
-                delay={index * 100}
+          <div className="space-y-6 max-w-3xl mx-auto">
+            {process.map((step, index) => (
+              <div
+                key={step.step}
+                id={`process-${index}`}
+                data-reveal
+                className={`glass-card p-6 flex items-start gap-6 transition-all duration-700 hover:bg-white/10 ${
+                  isVisible[`process-${index}`] ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="flex mb-12 last:mb-0">
-                  <div className="mr-6">
-                    <div className="w-12 h-12 rounded-full bg-photo-accent text-white flex items-center justify-center text-xl font-bold">
-                      {item.step}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl mb-2">{item.title}</h3>
-                    <p className="text-gray-600">{item.description}</p>
-                  </div>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-black font-bold flex-shrink-0">
+                  {step.step}
                 </div>
-              </AnimatedSection>
+                <div>
+                  <h3 className="text-lg font-display font-semibold text-white mb-1">{step.title}</h3>
+                  <p className="text-white/60">{step.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      {/* <section className="py-16 px-6 bg-white">
-        <div className="container mx-auto">
-          <AnimatedSection animation="fade-up" className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Frequently Asked Questions
-            </h2>
-            <div className="w-24 h-1 bg-photo-accent mx-auto mb-6"></div>
-          </AnimatedSection>
-
-          <div className="max-w-full mx-auto space-y-6">
-            {[
-              // {
-              //   question:
-              //     "How far in advance should I book my photography session?",
-              //   answer:
-              //     "We recommend booking at least 4-6 weeks in advance for portrait sessions and 6-12 months in advance for weddings to ensure availability, especially during peak seasons.",
-              // },
-              // {
-              //   question:
-              //     "What happens if it rains on the day of an outdoor shoot?",
-              //   answer:
-              //     "We monitor weather conditions closely and will contact you 24-48 hours before your session if there's concern. We can either reschedule or move to an indoor location, depending on your preference.",
-              // },
-              // {
-              //   question: "How long until I receive my photos?",
-              //   answer:
-              //     "Portrait sessions are typically delivered within 2 weeks, while weddings and larger events may take 4-6 weeks. We always provide a few preview images within days of your shoot.",
-              // },
-              // {
-              //   question: "Do you provide photo printing services?",
-              //   answer:
-              //     "Yes, we offer high-quality professional printing services through our lab partners. You can order prints directly through your online gallery, ensuring color accuracy and archival quality.",
-              // },
-              // {
-              //   question: "Do you travel for photography sessions?",
-              //   answer:
-              //     "Absolutely! We're available for travel nationwide and internationally. Travel fees vary based on location and duration - contact us for a custom quote.",
-              // },
-            ].map((faq, index) => (
-              <AnimatedSection
-                key={index}
-                animation="fade-up"
-                delay={index * 100}
-              >
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-medium text-lg mb-2">{faq.question}</h3>
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-photo-dark text-white">
-        <div className="container mx-auto text-center">
-          <AnimatedSection animation="fade-up">
-            <h2 className="font-serif text-3xl md:text-4xl mb-6">
+      <section className="section-padding">
+        <div className="max-w-4xl mx-auto text-center glass-card p-12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-emerald-500/10" />
+          <div className="relative">
+            <h2 className="text-2xl md:text-4xl font-display font-bold mb-4 text-white">
               Ready to Book Your Session?
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-300 mb-8">
-              Contact us today to discuss your photography needs and secure your
-              date.
+            <p className="text-white/60 mb-8">
+              Contact us today to discuss your project and secure your date.
             </p>
-            <Button
-              asChild
-              className="bg-photo-accent hover:bg-photo-accent/90 text-white"
-              size="lg"
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-bold rounded-full text-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all hover:scale-105"
             >
-              <Link to="/contact">Contact Us Now</Link>
-            </Button>
-          </AnimatedSection>
+              Contact Us <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
       </section>
     </Layout>
