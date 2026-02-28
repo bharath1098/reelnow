@@ -10,9 +10,18 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Update active section based on scroll position
-      const sections = ["home", "discover", "services", "features", "how-it-works", "join", "testimonials", "contact"];
+      const sections = [
+        "home",
+        "discover",
+        "services",
+        "features",
+        "how-it-works",
+        "join",
+        "testimonials",
+        "contact",
+      ];
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element) {
@@ -47,7 +56,8 @@ const Navigation = () => {
     const element = document.querySelector(href);
     if (element) {
       const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - offset,
         behavior: "smooth",
@@ -61,9 +71,7 @@ const Navigation = () => {
       <nav
         className={cn(
           "fixed w-full z-50 transition-all duration-500 py-4 px-4 md:px-8",
-          isScrolled
-            ? "glass-strong py-3"
-            : "bg-transparent"
+          isScrolled ? "glass-strong py-3" : "bg-transparent",
         )}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -96,7 +104,8 @@ const Navigation = () => {
                 }}
                 className={cn(
                   "nav-link text-sm font-medium uppercase tracking-wider",
-                  activeSection === link.href.slice(1) && "text-white after:scale-x-100"
+                  activeSection === link.href.slice(1) &&
+                    "text-white after:scale-x-100",
                 )}
               >
                 {link.name}
@@ -151,15 +160,15 @@ const Navigation = () => {
           "lg:hidden fixed inset-0 z-40 transition-all duration-500",
           isMobileMenuOpen
             ? "opacity-100 visible"
-            : "opacity-0 invisible pointer-events-none"
+            : "opacity-0 invisible pointer-events-none",
         )}
       >
         {/* Backdrop */}
-        <div 
+        <div
           className="absolute inset-0 bg-black/90 backdrop-blur-xl"
           onClick={() => setIsMobileMenuOpen(false)}
         />
-        
+
         {/* Menu Content */}
         <div className="relative h-full flex flex-col items-center justify-center gap-8">
           {navLinks.map((link, index) => (
@@ -172,20 +181,22 @@ const Navigation = () => {
               }}
               className={cn(
                 "text-2xl font-display font-semibold transition-all duration-300",
-                activeSection === link.href.slice(1) 
-                  ? "text-cyan-400" 
-                  : "text-white/70 hover:text-white"
+                activeSection === link.href.slice(1)
+                  ? "text-cyan-400"
+                  : "text-white/70 hover:text-white",
               )}
-              style={{ 
-                transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
-                transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+              style={{
+                transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : "0ms",
+                transform: isMobileMenuOpen
+                  ? "translateY(0)"
+                  : "translateY(20px)",
                 opacity: isMobileMenuOpen ? 1 : 0,
               }}
             >
               {link.name}
             </a>
           ))}
-          
+
           <a
             href="#contact"
             onClick={(e) => {
@@ -193,20 +204,28 @@ const Navigation = () => {
               scrollToSection("#contact");
             }}
             className="mt-4 px-8 py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-semibold rounded-full text-lg"
-            style={{ 
-              transitionDelay: isMobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms',
-              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+            style={{
+              transitionDelay: isMobileMenuOpen
+                ? `${navLinks.length * 50}ms`
+                : "0ms",
+              transform: isMobileMenuOpen
+                ? "translateY(0)"
+                : "translateY(20px)",
               opacity: isMobileMenuOpen ? 1 : 0,
             }}
           >
             Book Now
           </a>
 
-          <div 
+          <div
             className="flex items-center gap-6 mt-6"
-            style={{ 
-              transitionDelay: isMobileMenuOpen ? `${(navLinks.length + 1) * 50}ms` : '0ms',
-              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+            style={{
+              transitionDelay: isMobileMenuOpen
+                ? `${(navLinks.length + 1) * 50}ms`
+                : "0ms",
+              transform: isMobileMenuOpen
+                ? "translateY(0)"
+                : "translateY(20px)",
               opacity: isMobileMenuOpen ? 1 : 0,
             }}
           >
