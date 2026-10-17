@@ -1,253 +1,247 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Instagram, Menu, X, Youtube } from "lucide-react";
+import {
+  CalendarCheck,
+  Clapperboard,
+  Home,
+  Package,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
+
+type NavLink = {
+  name: string;
+  type: "hash" | "route";
+  href: string;
+  icon?: LucideIcon;
+  sectionIds?: string[];
+};
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
+  const router = useRouter();
+  const [hash, setHash] = useState("");
+  const onHome = pathname === "/";
+  const onWork = pathname.startsWith("/work");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
 
-      // Update active section based on scroll position
+      if (!onHome) return;
+
       const sections = [
         "home",
+        "features",
         "discover",
         "services",
-        "features",
-        "how-it-works",
+        "why",
         "join",
         "testimonials",
         "contact",
       ];
-      for (const section of sections.reverse()) {
+      for (const section of [...sections].reverse()) {
         const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(section);
-            break;
-          }
+        if (element && element.getBoundingClientRect().top <= 100) {
+          setActiveSection(section);
+          break;
         }
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [onHome]);
 
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
-  }, [isMobileMenuOpen]);
+    const syncHash = () => setHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Our Work", href: "#discover" },
-    { name: "Services", href: "#services" },
-    { name: "Features", href: "#features" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Join Us", href: "#join" },
-    { name: "Contact", href: "#contact" },
+  useEffect(() => {
+    if (!onHome || !hash) return;
+    const id = hash.slice(1);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+  }, [onHome, hash, pathname]);
+
+  const desktopLinks: NavLink[] = [
+    { name: "Home", type: "hash", href: "#home" },
+    { name: "Features", type: "hash", href: "#features" },
+    { name: "Work", type: "route", href: "/work" },
+    { name: "Services", type: "hash", href: "#services" },
+    { name: "Why", type: "hash", href: "#why" },
+    { name: "Creators", type: "hash", href: "#join" },
+    { name: "Contact", type: "hash", href: "#contact" },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80;
-      const elementPosition =
-        element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: "smooth",
-      });
+  const mobileTabs: NavLink[] = [
+    {
+      name: "Home",
+      type: "hash",
+      href: "#home",
+      icon: Home,
+      sectionIds: ["home", "features", "discover"],
+    },
+    {
+      name: "Work",
+      type: "route",
+      href: "/work",
+      icon: Clapperboard,
+    },
+    {
+      name: "Packages",
+      type: "hash",
+      href: "#services",
+      icon: Package,
+      sectionIds: ["services"],
+    },
+    {
+      name: "Why",
+      type: "hash",
+      href: "#why",
+      icon: Sparkles,
+      sectionIds: ["why", "join", "testimonials"],
+    },
+    {
+      name: "Book",
+      type: "hash",
+      href: "#contact",
+      icon: CalendarCheck,
+      sectionIds: ["contact"],
+    },
+  ];
+
+  const goHash = (href: string) => {
+    if (onHome) {
+      const element = document.querySelector(href);
+      if (element) {
+        const top =
+          element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+      return;
     }
-    setIsMobileMenuOpen(false);
+    router.push(`/${href}`);
+  };
+
+  const goRoute = (path: string) => {
+    router.push(path);
+  };
+
+  const isDesktopActive = (link: NavLink) => {
+    if (link.type === "route") return onWork;
+    return onHome && activeSection === link.href.slice(1);
+  };
+
+  const isTabActive = (tab: NavLink) => {
+    if (tab.type === "route") return onWork;
+    if (!onHome) return false;
+    if (tab.sectionIds?.includes(activeSection)) return true;
+    return activeSection === tab.href.slice(1);
   };
 
   return (
     <>
+      {/* Top bar */}
       <nav
         className={cn(
-          "fixed w-full z-50 transition-all duration-500 py-4 px-4 md:px-8",
-          isScrolled ? "glass-strong py-3" : "bg-transparent",
+          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+          isScrolled
+            ? "border-b border-white/10 bg-noir/70 py-3 backdrop-blur-xl"
+            : "bg-transparent py-4 lg:py-5",
         )}
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#home");
-            }}
-            className="flex items-center gap-2"
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-4 md:px-8 lg:px-12">
+          <button
+            type="button"
+            onClick={() => goRoute("/")}
+            className="shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-emerald-400 flex items-center justify-center">
-              <span className="text-black font-bold text-lg">R</span>
-            </div>
-            <span className="font-display text-xl font-bold text-white">
-              Reel<span className="gradient-text">Now</span>
+            <span className="font-sans text-[13px] font-semibold uppercase tracking-[0.22em] text-white md:text-sm">
+              Reel<span className="text-platinum">Now</span>
             </span>
-          </a>
+          </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
+          <div
+            className={cn(
+              "hidden items-center gap-8 rounded-full px-6 py-2.5 lg:flex",
+              isScrolled && "glass-soft",
+            )}
+          >
+            {desktopLinks.map((link) => (
+              <button
+                key={link.name}
+                type="button"
+                onClick={() =>
+                  link.type === "route" ? goRoute(link.href) : goHash(link.href)
+                }
                 className={cn(
-                  "nav-link text-sm font-medium uppercase tracking-wider",
-                  activeSection === link.href.slice(1) &&
-                    "text-white after:scale-x-100",
+                  "nav-link",
+                  isDesktopActive(link) && "active text-platinum",
                 )}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="https://instagram.com/reelnow.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-cyan-400 transition-colors"
+          <div className="hidden shrink-0 items-center gap-3 lg:flex">
+            <button
+              type="button"
+              onClick={() => goHash("#contact")}
+              className="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition-colors hover:bg-white hover:text-noir"
             >
-              <Instagram size={20} />
-            </a>
-            <a
-              href="https://www.youtube.com/@reelnow_official"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-cyan-400 transition-colors"
-            >
-              <Youtube size={20} />
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("#contact");
-              }}
-              className="ml-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-semibold rounded-full text-sm hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
-            >
-              Book Now
-            </a>
+              Book a Session
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-white z-50"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={cn(
-          "lg:hidden fixed inset-0 z-40 transition-all duration-500",
-          isMobileMenuOpen
-            ? "opacity-100 visible"
-            : "opacity-0 invisible pointer-events-none",
-        )}
+      {/* Mobile bottom tabs — Studio / Lunar style */}
+      <nav
+        className="fixed inset-x-0 bottom-0 z-50 flex gap-0.5 border-t border-white/10 bg-noir px-1.5 pb-[max(0.35rem,env(safe-area-inset-bottom))] pt-1.5 shadow-[0_-12px_32px_rgba(0,0,0,0.65)] lg:hidden"
+        aria-label="Main sections"
       >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-
-        {/* Menu Content */}
-        <div className="relative h-full flex flex-col items-center justify-center gap-8">
-          {navLinks.map((link, index) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(link.href);
-              }}
+        {mobileTabs.map((tab) => {
+          const Icon = tab.icon!;
+          const active = isTabActive(tab);
+          return (
+            <button
+              key={tab.name}
+              type="button"
+              aria-current={active ? "page" : undefined}
+              onClick={() =>
+                tab.type === "route" ? goRoute(tab.href) : goHash(tab.href)
+              }
               className={cn(
-                "text-2xl font-display font-semibold transition-all duration-300",
-                activeSection === link.href.slice(1)
-                  ? "text-cyan-400"
-                  : "text-white/70 hover:text-white",
+                "grid min-w-0 flex-1 justify-items-center gap-0.5 rounded-[14px] px-1 py-2 transition-colors",
+                active
+                  ? "bg-platinum/15 text-platinum"
+                  : "text-silver/70 hover:text-platinum",
               )}
-              style={{
-                transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : "0ms",
-                transform: isMobileMenuOpen
-                  ? "translateY(0)"
-                  : "translateY(20px)",
-                opacity: isMobileMenuOpen ? 1 : 0,
-              }}
             >
-              {link.name}
-            </a>
-          ))}
+              <Icon className="h-5 w-5" strokeWidth={active ? 2.25 : 1.75} />
+              <span className="max-w-full truncate font-sans text-[10px] font-bold tracking-wide">
+                {tab.name}
+              </span>
+            </button>
+          );
+        })}
+      </nav>
 
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("#contact");
-            }}
-            className="mt-4 px-8 py-3 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-semibold rounded-full text-lg"
-            style={{
-              transitionDelay: isMobileMenuOpen
-                ? `${navLinks.length * 50}ms`
-                : "0ms",
-              transform: isMobileMenuOpen
-                ? "translateY(0)"
-                : "translateY(20px)",
-              opacity: isMobileMenuOpen ? 1 : 0,
-            }}
-          >
-            Book Now
-          </a>
-
-          <div
-            className="flex items-center gap-6 mt-6"
-            style={{
-              transitionDelay: isMobileMenuOpen
-                ? `${(navLinks.length + 1) * 50}ms`
-                : "0ms",
-              transform: isMobileMenuOpen
-                ? "translateY(0)"
-                : "translateY(20px)",
-              opacity: isMobileMenuOpen ? 1 : 0,
-            }}
-          >
-            <a
-              href="https://instagram.com/reelnow.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-cyan-400 transition-colors"
-            >
-              <Instagram size={28} />
-            </a>
-            <a
-              href="https://www.youtube.com/@reelnow_official"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-cyan-400 transition-colors"
-            >
-              <Youtube size={28} />
-            </a>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
