@@ -103,9 +103,12 @@ function LoginForm() {
         <button
           type="submit"
           disabled={pending}
-          className="mt-8 w-full rounded-full bg-platinum py-4 font-sans text-[12px] font-semibold uppercase tracking-[0.18em] text-noir transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-platinum py-4 font-sans text-[12px] font-semibold uppercase tracking-[0.18em] text-noir transition-opacity hover:opacity-90 disabled:opacity-60"
         >
-          {pending ? "Signing in…" : "Enter studio"}
+          {pending && (
+            <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-noir/20 border-t-noir" />
+          )}
+          {pending ? "Signing in" : "Enter studio"}
         </button>
 
         <Link

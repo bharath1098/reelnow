@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useStudioAuth } from "@/components/studio/StudioAuthProvider";
+import { LoadingMark } from "@/components/LoadingScreen";
 import { StudioEventsCatalog } from "@/components/studio/StudioEventsCatalog";
 import { canPublish } from "@/lib/roles";
 import type { WorkEvent } from "@/lib/work";
@@ -35,9 +36,7 @@ export default function StudioHome() {
   if (!user) return null;
 
   if (loading) {
-    return (
-      <p className="font-sans text-sm text-silver">Loading events…</p>
-    );
+    return <LoadingMark label="Loading events" />;
   }
 
   return (

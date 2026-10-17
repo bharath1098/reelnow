@@ -212,7 +212,7 @@ const Navigation = () => {
 
       {/* Mobile bottom tabs — Studio / Lunar style */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 flex gap-0.5 border-t border-white/10 bg-noir px-1.5 pb-[max(0.35rem,env(safe-area-inset-bottom))] pt-1.5 shadow-[0_-12px_32px_rgba(0,0,0,0.65)] lg:hidden"
+        className="glass-tabbar fixed inset-x-0 bottom-0 z-50 flex gap-1 px-2 pb-[max(0.4rem,env(safe-area-inset-bottom))] pt-2 lg:hidden"
         aria-label="Main sections"
       >
         {mobileTabs.map((tab) => {
@@ -227,10 +227,8 @@ const Navigation = () => {
                 tab.type === "route" ? goRoute(tab.href) : goHash(tab.href)
               }
               className={cn(
-                "grid min-w-0 flex-1 justify-items-center gap-0.5 rounded-[14px] px-1 py-2 transition-colors",
-                active
-                  ? "bg-platinum/15 text-platinum"
-                  : "text-silver/70 hover:text-platinum",
+                "relative grid min-w-0 flex-1 justify-items-center gap-0.5 px-1 pb-2.5 pt-2 transition-colors",
+                active ? "glass-tab-on text-platinum" : "text-silver/75 hover:text-platinum",
               )}
             >
               <Icon className="h-5 w-5" strokeWidth={active ? 2.25 : 1.75} />

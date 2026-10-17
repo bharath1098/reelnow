@@ -25,24 +25,24 @@ export default async function InquiriesPage() {
   const others = rows.filter((row) => row.status !== "pending");
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
         <p className="eyebrow">Studio</p>
-        <h1 className="mt-3 font-serif text-4xl font-medium md:text-5xl">
+        <h1 className="mt-2 font-serif text-3xl font-medium sm:mt-3 sm:text-4xl md:text-5xl">
           Enquiries
         </h1>
-        <p className="mt-2 max-w-xl font-sans text-sm text-silver">
+        <p className="mt-2 hidden max-w-xl font-sans text-sm text-silver sm:block">
           Booking requests from the public site. Approve to create a shoot
           event, set the date, and assign a worker.
         </p>
       </div>
 
-      <section className="space-y-4">
+      <section className="space-y-3 sm:space-y-4">
         <h2 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-silver">
           Pending ({pending.length})
         </h2>
         {pending.length === 0 ? (
-          <p className="studio-panel font-sans text-sm text-silver">
+          <p className="rounded-2xl border border-platinum/10 bg-charcoal/40 px-4 py-6 text-center font-sans text-sm text-silver sm:py-8">
             No pending enquiries.
           </p>
         ) : (
@@ -63,48 +63,64 @@ export default async function InquiriesPage() {
               }),
             );
             return (
-              <article key={inquiry.id} className="studio-panel space-y-5">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <h3 className="font-serif text-2xl text-platinum">
+              <article
+                key={inquiry.id}
+                className="space-y-4 rounded-[1.25rem] border border-platinum/15 bg-charcoal/40 p-4 sm:space-y-5 sm:rounded-[1.75rem] sm:p-6 md:p-8"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h3 className="font-serif text-xl text-platinum sm:text-2xl">
                       {inquiry.fullName}
                     </h3>
                     <p className="mt-1 font-sans text-sm text-silver">
-                      {inquiry.packageName} · {inquiry.city}, {inquiry.state}
+                      {inquiry.packageName}
                     </p>
-                    <p className="mt-2 font-sans text-xs text-silver">
+                    <p className="mt-1 font-sans text-xs text-silver">
                       {inquiry.preferredDate} · {inquiry.preferredTime}
+                      <span className="hidden sm:inline">
+                        {" "}
+                        · {inquiry.city}, {inquiry.state}
+                      </span>
                     </p>
                   </div>
                   <a
                     href={wa}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-platinum/30 px-4 py-2 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-platinum hover:bg-platinum/10"
+                    className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-platinum/30 px-3 py-2 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-platinum hover:bg-platinum/10 sm:gap-2 sm:px-4 sm:text-[11px]"
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
                     WhatsApp
                   </a>
                 </div>
 
-                <div className="grid gap-2 font-sans text-sm text-silver sm:grid-cols-2">
+                <div className="grid gap-2 rounded-xl border border-platinum/10 bg-noir/40 p-3 font-sans text-xs text-silver sm:grid-cols-2 sm:text-sm">
                   <p>
-                    <span className="text-platinum">Phone:</span> +91{" "}
-                    {inquiry.phone}
+                    <span className="text-platinum">Phone</span>
+                    <br />
+                    +91 {inquiry.phone}
                   </p>
-                  <p>
-                    <span className="text-platinum">Email:</span>{" "}
+                  <p className="min-w-0 break-all">
+                    <span className="text-platinum">Email</span>
+                    <br />
                     {inquiry.email}
+                  </p>
+                  <p className="sm:hidden">
+                    <span className="text-platinum">Location</span>
+                    <br />
+                    {[inquiry.city, inquiry.state].filter(Boolean).join(", ")}
                   </p>
                   {inquiry.address && (
                     <p className="sm:col-span-2">
-                      <span className="text-platinum">Address:</span>{" "}
+                      <span className="text-platinum">Address</span>
+                      <br />
                       {inquiry.address}
                     </p>
                   )}
                   {inquiry.details && (
                     <p className="sm:col-span-2">
-                      <span className="text-platinum">Details:</span>{" "}
+                      <span className="text-platinum">Details</span>
+                      <br />
                       {inquiry.details}
                     </p>
                   )}
@@ -112,7 +128,7 @@ export default async function InquiriesPage() {
 
                 <form
                   action={approveInquiry.bind(null, inquiry.id)}
-                  className="grid gap-3 rounded-2xl border border-platinum/10 bg-noir/40 p-4 sm:grid-cols-2 lg:grid-cols-4"
+                  className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
                 >
                   <StudioTokenField />
                   <label className="studio-label mt-0">
@@ -158,18 +174,18 @@ export default async function InquiriesPage() {
                       ))}
                     </select>
                   </label>
-                  <div className="flex flex-wrap gap-2 sm:col-span-2 lg:col-span-4">
+                  <div className="grid grid-cols-2 gap-2 sm:col-span-2 sm:flex sm:flex-wrap lg:col-span-4">
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 rounded-full bg-platinum px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-noir"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-platinum px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-noir sm:px-5 sm:tracking-[0.14em]"
                     >
                       <Check className="h-3.5 w-3.5" />
-                      Approve & create event
+                      Approve
                     </button>
                     <button
                       formAction={rejectInquiry.bind(null, inquiry.id)}
                       type="submit"
-                      className="inline-flex items-center gap-2 rounded-full border border-red-400/30 px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-red-300 hover:bg-red-500/10"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-red-400/30 px-4 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-red-300 hover:bg-red-500/10 sm:px-5 sm:tracking-[0.14em]"
                     >
                       <X className="h-3.5 w-3.5" />
                       Reject
@@ -188,28 +204,39 @@ export default async function InquiriesPage() {
             Reviewed
           </h2>
           {others.map((inquiry) => (
-            <div
+            <article
               key={inquiry.id}
-              className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-platinum/10 bg-charcoal/40 px-4 py-3"
+              className="rounded-2xl border border-platinum/10 bg-charcoal/40 p-4"
             >
-              <div>
-                <p className="font-sans text-sm text-platinum">
-                  {inquiry.fullName} · {inquiry.packageName}
-                </p>
-                <p className="font-sans text-xs uppercase tracking-[0.14em] text-silver">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="truncate font-serif text-lg text-platinum">
+                    {inquiry.fullName}
+                  </p>
+                  <p className="mt-0.5 truncate font-sans text-xs text-silver">
+                    {inquiry.packageName}
+                    {inquiry.preferredDate ? ` · ${inquiry.preferredDate}` : ""}
+                  </p>
+                </div>
+                <span
+                  className={`shrink-0 rounded-full px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] ${
+                    inquiry.status === "approved"
+                      ? "bg-emerald-400/15 text-emerald-200"
+                      : "bg-white/10 text-silver"
+                  }`}
+                >
                   {inquiry.status}
-                  {inquiry.eventId ? ` · event ready` : ""}
-                </p>
+                </span>
               </div>
               {inquiry.eventId && (
                 <Link
                   href={`/studio/events/${inquiry.eventId}`}
-                  className="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-platinum hover:underline"
+                  className="mt-3 flex w-full items-center justify-center rounded-full border border-platinum/25 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-platinum hover:bg-platinum/10"
                 >
                   Open event
                 </Link>
               )}
-            </div>
+            </article>
           ))}
         </section>
       )}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -50,6 +51,8 @@ export function StudioHeader({
   unreadCount?: number;
 }) {
   const pathname = usePathname() ?? "/studio";
+  const [profileOpen, setProfileOpen] = useState(false);
+  const initial = name.trim().charAt(0).toUpperCase() || "R";
 
   const links: NavLink[] = [
     {
@@ -93,19 +96,12 @@ export function StudioHeader({
     <>
       {/* —— Mobile top bar (Lunar-style) —— */}
       <header className="sticky top-0 z-40 flex items-center justify-between gap-3 border-b border-white/10 bg-noir/95 px-3 py-2.5 backdrop-blur-xl lg:hidden">
-        <div className="flex min-w-0 items-center gap-2.5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-platinum/20 bg-platinum/10 text-platinum">
-            <Film className="h-4 w-4" />
-          </span>
-          <div className="min-w-0">
-            <p className="truncate font-sans text-sm font-semibold leading-tight text-platinum">
-              {name}
-            </p>
-            <p className="font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-silver">
-              {role}
-            </p>
-          </div>
-        </div>
+        <Link
+          href="/studio"
+          className="font-sans text-[13px] font-semibold uppercase leading-none tracking-[0.16em] text-white"
+        >
+          Reel<span className="text-platinum">Now</span>
+        </Link>
         <div className="flex shrink-0 items-center gap-1.5">
           <StudioNotifications
             items={notifications}
@@ -119,16 +115,50 @@ export function StudioHeader({
           >
             <Globe className="h-4 w-4" />
           </Link>
-          <form action={signOutAction}>
-            <button
-              type="submit"
-              aria-label="Sign out"
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.08] text-platinum/90 transition-colors hover:bg-white/15"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-          </form>
+          <button
+            type="button"
+            aria-label="Profile"
+            aria-expanded={profileOpen}
+            onClick={() => setProfileOpen((open) => !open)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-platinum/30 bg-platinum font-sans text-sm font-semibold text-noir"
+          >
+            {initial}
+          </button>
         </div>
+        {profileOpen && (
+          <>
+            <button
+              type="button"
+              aria-label="Close profile"
+              className="fixed inset-0 z-40 cursor-default"
+              onClick={() => setProfileOpen(false)}
+            />
+            <div className="absolute right-3 top-[calc(100%+0.45rem)] z-50 w-60 overflow-hidden rounded-2xl border border-platinum/15 bg-charcoal shadow-[0_20px_50px_rgba(0,0,0,0.55)]">
+              <div className="flex items-center gap-3 px-4 py-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-platinum font-sans text-base font-semibold text-noir">
+                  {initial}
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate font-sans text-sm font-semibold text-platinum">
+                    {name}
+                  </p>
+                  <p className="mt-0.5 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-silver">
+                    {role}
+                  </p>
+                </div>
+              </div>
+              <form action={signOutAction} className="border-t border-platinum/10">
+                <button
+                  type="submit"
+                  className="flex w-full items-center gap-2 px-4 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-silver hover:bg-white/5 hover:text-platinum"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  Sign out
+                </button>
+              </form>
+            </div>
+          </>
+        )}
       </header>
 
       {/* —— Desktop top bar —— */}
@@ -203,7 +233,7 @@ export function StudioHeader({
 
       {/* —— Mobile bottom tabs —— */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 flex gap-0.5 border-t border-white/10 bg-noir px-1.5 pb-[max(0.4rem,env(safe-area-inset-bottom))] pt-1.5 shadow-[0_-12px_32px_rgba(0,0,0,0.65)] lg:hidden"
+        className="glass-tabbar fixed inset-x-0 bottom-0 z-50 flex gap-1 px-2 pb-[max(0.45rem,env(safe-area-inset-bottom))] pt-2 lg:hidden"
         aria-label="Studio sections"
       >
         {links.map((link) => {
@@ -214,10 +244,10 @@ export function StudioHeader({
               key={link.href}
               href={link.href}
               aria-current={active ? "page" : undefined}
-              className={`grid min-w-0 flex-1 justify-items-center gap-0.5 rounded-[14px] px-1 py-2 transition-colors ${
+              className={`relative grid min-w-0 flex-1 justify-items-center gap-0.5 px-1 pb-2.5 pt-2 transition-colors ${
                 active
-                  ? "bg-platinum/15 text-platinum"
-                  : "text-silver/70 hover:text-platinum"
+                  ? "glass-tab-on text-platinum"
+                  : "text-silver/75 hover:text-platinum"
               }`}
             >
               <Icon className="h-5 w-5" strokeWidth={active ? 2.25 : 1.75} />

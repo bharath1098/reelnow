@@ -106,6 +106,19 @@
     }
   }
 
+  @keyframes reel-strip {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .reel-strip-track {
+    animation: reel-strip 1.6s linear infinite;
+  }
+
   .eyebrow {
     @apply text-[11px] font-sans font-medium uppercase tracking-[0.28em] text-silver;
   }
@@ -114,12 +127,67 @@
     @apply mt-2 w-full rounded-2xl border border-platinum/15 bg-noir/70 px-4 py-3.5 font-sans text-sm text-platinum outline-none transition-colors placeholder:text-silver/50 focus:border-platinum/45 focus:bg-noir;
   }
 
+  select.studio-input {
+    appearance: none;
+    -webkit-appearance: none;
+    color-scheme: dark;
+    padding-left: 1.15rem;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23E6E6E6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 1rem;
+  }
+
   .studio-label {
     @apply block font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-silver;
   }
 
   .studio-panel {
     @apply rounded-[1.75rem] border border-platinum/15 bg-charcoal/40 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl md:p-8;
+  }
+
+  .glass-tabbar {
+    background: linear-gradient(
+      180deg,
+      rgba(48, 48, 48, 0.55) 0%,
+      rgba(18, 18, 18, 0.82) 38%,
+      rgba(8, 8, 8, 0.94) 100%
+    );
+    -webkit-backdrop-filter: blur(22px) saturate(1.35);
+    backdrop-filter: blur(22px) saturate(1.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 -16px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .glass-tab-on {
+    position: relative;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(230, 230, 230, 0.08) 36%,
+      transparent 78%
+    );
+    color: #f4f4f4;
+  }
+
+  .glass-tab-on::after {
+    content: "";
+    position: absolute;
+    left: 22%;
+    right: 22%;
+    bottom: 0;
+    height: 3px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #f5f5f5 50%,
+      transparent
+    );
+    box-shadow: 0 0 14px rgba(230, 230, 230, 0.85);
   }
 
   /* Glass — silver frosted panels */

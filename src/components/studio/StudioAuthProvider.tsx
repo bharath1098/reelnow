@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { LoadingMark } from "@/components/LoadingScreen";
 import {
   clearStudioSession,
   readStudioSession,
@@ -74,19 +75,11 @@ export function StudioAuthProvider({ children }: { children: ReactNode }) {
   );
 
   if (!ready) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-noir font-sans text-sm text-silver">
-        Loading studio…
-      </div>
-    );
+    return <LoadingMark full label="Loading studio" />;
   }
 
   if (!user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-noir font-sans text-sm text-silver">
-        Redirecting to sign in…
-      </div>
-    );
+    return <LoadingMark full label="Redirecting" />;
   }
 
   return (
