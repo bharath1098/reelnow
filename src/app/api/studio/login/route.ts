@@ -6,6 +6,8 @@ import { users } from "@/db/schema";
 import type { Role } from "@/lib/roles";
 import { signStudioToken } from "@/lib/studio-jwt";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
