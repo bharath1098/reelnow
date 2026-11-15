@@ -41,7 +41,7 @@ const Index = ({ featured }: { featured: WorkEvent[] }) => {
       <Navigation />
       <CinematicHero onBook={scrollToContact} />
       <FeaturesSection onBook={scrollToContact} />
-      <WorkShowcase events={featured} onWatchMore={scrollToContact} />
+      {/* <WorkShowcase events={featured} onWatchMore={scrollToContact} /> */}
 
       {/* Feature banner */}
       <section className="relative min-h-[65vh] overflow-hidden">
